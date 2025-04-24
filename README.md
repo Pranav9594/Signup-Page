@@ -1,6 +1,4 @@
-# Modern Authentication UI
-
-## Signup-Page
+# Signup-Page
 ![Screenshot 2025-04-24 145650](https://github.com/user-attachments/assets/ffb30f9c-65dc-4f20-b0ae-a781409ba54a)
 
 A sleek, responsive, and accessible authentication interface built with HTML, CSS, and JavaScript.
