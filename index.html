@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="description" content="Create your account to access our services">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- PWA Support -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#4e73df">
+    <link rel="apple-touch-icon" href="images/icons/icon-192x192.png">
+</head>
+<body>
+    <!-- Language Selector -->
+    <div class="language-selector">
+        <button class="language-btn" aria-label="Select language">
+            <i class="fas fa-globe"></i>
+            <span id="current-language">English</span>
+            <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="language-dropdown">
+            <div class="language-option" data-lang="en">English</div>
+            <div class="language-option" data-lang="es">Español</div>
+            <div class="language-option" data-lang="fr">Français</div>
+            <div class="language-option" data-lang="de">Deutsch</div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="theme-toggle" role="switch" aria-checked="false" tabindex="0" aria-label="Toggle dark mode">
+            <i class="fas fa-moon" aria-hidden="true"></i>
+            <i class="fas fa-sun" aria-hidden="true"></i>
+            <div class="toggle-ball"></div>
+        </div>
+        
+        <div class="card">
+            <!-- Progress Bar -->
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <div class="step-indicators">
+                    <div class="step active" data-step="1">
+                        <div class="step-number">1</div>
+                        <div class="step-label">Account</div>
+                    </div>
+                    <div class="step" data-step="2">
+                        <div class="step-number">2</div>
+                        <div class="step-label">Profile</div>
+                    </div>
+                    <div class="step" data-step="3">
+                        <div class="step-number">3</div>
+                        <div class="step-label">Complete</div>
+                    </div>
+                    <div class="step" data-step="4">
+                        <div class="step-number">4</div>
+                        <div class="step-label">Verify</div>
+                    </div>
+                </div>
+            </div>
+            
+            <h1 id="form-title">Create Account</h1>
+            
+            <div class="social-login">
+                <button type="button" class="social-btn google" aria-label="Sign up with Google">
+                    <i class="fab fa-google" aria-hidden="true"></i>
+                    <span>Sign up with Google</span>
+                </button>
+                <button type="button" class="social-btn facebook" aria-label="Sign up with Facebook">
+                    <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                    <span>Sign up with Facebook</span>
+                </button>
+                <button type="button" class="social-btn apple" aria-label="Sign up with Apple">
+                    <i class="fab fa-apple" aria-hidden="true"></i>
+                    <span>Sign up with Apple</span>
+                </button>
+            </div>
+            
+            <div class="divider">
+                <span>or</span>
+            </div>
+            
+            <form id="signup-form">
+                <!-- Step 1: Account Information -->
+                <div class="form-step" id="step-1">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <div class="input-with-icon">
+                            <input type="email" id="email" placeholder="Enter your email" autocomplete="email">
+                            <i class="fas fa-envelope" aria-hidden="true"></i>
+                        </div>
+                        <div class="email-suggestions" id="email-suggestions"></div>
+                        <span class="error-message" id="email-error"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="password-input">
+                            <input type="password" id="password" placeholder="Create a password" autocomplete="new-password">
+                            <i class="fas fa-eye-slash toggle-password" aria-hidden="true"></i>
+                        </div>
+                        <div class="password-strength">
+                            <div class="strength-meter">
+                                <div class="strength-meter-fill" id="strength-meter-fill"></div>
+                            </div>
+                            <span id="password-strength-text">Password strength</span>
+                            <div id="password-criteria">
+                                <div class="criteria-item" id="length-criteria">
+                                    <i class="fas fa-times-circle"></i> At least 8 characters
+                                </div>
+                                <div class="criteria-item" id="uppercase-criteria">
+                                    <i class="fas fa-times-circle"></i> At least one uppercase letter
+                                </div>
+                                <div class="criteria-item" id="lowercase-criteria">
+                                    <i class="fas fa-times-circle"></i> At least one lowercase letter
+                                </div>
+                                <div class="criteria-item" id="number-criteria">
+                                    <i class="fas fa-times-circle"></i> At least one number
+                                </div>
+                                <div class="criteria-item" id="special-criteria">
+                                    <i class="fas fa-times-circle"></i> At least one special character
+                                </div>
+                            </div>
+                        </div>
+                        <span class="error-message" id="password-error"></span>
+                        <button type="button" id="generate-password" class="btn-link">Generate strong password</button>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirm-password">Confirm Password</label>
+                        <div class="password-input">
+                            <input type="password" id="confirm-password" placeholder="Confirm your password" autocomplete="new-password">
+                            <i class="fas fa-eye-slash toggle-password" aria-hidden="true"></i>
+                        </div>
+                        <span class="error-message" id="confirm-password-error"></span>
+                    </div>
+                    
+                    <div class="form-nav">
+                        <div></div> <!-- Empty div to balance the flex layout -->
+                        <button type="button" id="next-1" class="btn-next" disabled>Next <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                
+                <!-- Step 2: Profile Information -->
+                <div class="form-step hidden" id="step-2">
+                    <div class="form-group">
+                        <label for="fullname">Full Name</label>
+                        <div class="input-with-icon">
+                            <input type="text" id="fullname" placeholder="Enter your full name" autocomplete="name">
+                            <i class="fas fa-user" aria-hidden="true"></i>
+                        </div>
+                        <span class="error-message" id="fullname-error"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number (optional)</label>
+                        <div class="phone-input">
+                            <select id="country-code">
+                                <option value="+1">+1</option>
+                                <option value="+44">+44</option>
+                                <option value="+91">+91</option>
+                                <option value="+61">+61</option>
+                                <option value="+33">+33</option>
+                                <option value="+49">+49</option>
+                            </select>
+                            <input type="tel" id="phone" placeholder="Enter your phone number" autocomplete="tel">
+                        </div>
+                        <span class="error-message" id="phone-error"></span>
+                        <button type="button" id="verify-phone" class="btn-link">Verify via SMS</button>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dob">Date of Birth</label>
+                        <div class="input-with-icon">
+                            <input type="date" id="dob" autocomplete="bday">
+                            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                        </div>
+                        <span class="error-message" id="dob-error"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>What are you interested in?</label>
+                        <div class="interest-options">
+                            <div class="interest-option">
+                                <input type="checkbox" id="interest-tech" class="interest-checkbox">
+                                <label for="interest-tech" class="interest-label">Technology</label>
+                            </div>
+                            <div class="interest-option">
+                                <input type="checkbox" id="interest-finance" class="interest-checkbox">
+                                <label for="interest-finance" class="interest-label">Finance</label>
+                            </div>
+                            <div class="interest-option">
+                                <input type="checkbox" id="interest-health" class="interest-checkbox">
+                                <label for="interest-health" class="interest-label">Health</label>
+                            </div>
+                            <div class="interest-option">
+                                <input type="checkbox" id="interest-edu" class="interest-checkbox">
+                                <label for="interest-edu" class="interest-label">Education</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="newsletter" class="custom-checkbox">
+                        <label for="newsletter" class="checkbox-label">Subscribe to our newsletter</label>
+                    </div>
+                    
+                    <div class="form-nav">
+                        <button type="button" id="prev-2" class="btn-prev"><i class="fas fa-arrow-left"></i> Back</button>
+                        <button type="button" id="next-2" class="btn-next">Next <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                
+                <!-- Step 3: Terms & Security -->
+                <div class="form-step hidden" id="step-3">
+                    <div class="terms-container">
+                        <h3>Terms of Service</h3>
+                        <div class="terms-content">
+                            <p>By creating an account, you agree to our Terms of Service and acknowledge that you have read our Privacy Policy.</p>
+                            <p>This agreement describes the terms and conditions for using our service. Please read it carefully.</p>
+                            <p>Our platform collects certain personal information, which we protect according to our privacy policy. We may use this information to improve your experience and provide relevant content.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="terms" class="custom-checkbox">
+                        <label for="terms" class="checkbox-label">I agree to the <a href="#" class="terms-link">Terms of Service</a> and <a href="#" class="terms-link">Privacy Policy</a></label>
+                        <span class="error-message" id="terms-error"></span>
+                    </div>
+                    
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="age-confirm" class="custom-checkbox">
+                        <label for="age-confirm" class="checkbox-label">I confirm that I am at least 18 years old</label>
+                        <span class="error-message" id="age-error"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Enhanced Security</label>
+                        <div class="security-options">
+                            <div class="security-option" id="two-factor-option">
+                                <div class="security-icon"><i class="fas fa-shield-alt"></i></div>
+                                <div class="security-info">
+                                    <h4>Two-Factor Authentication</h4>
+                                    <p>Add an extra layer of security to your account</p>
+                                </div>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="two-factor" class="toggle-input">
+                                    <label for="two-factor" class="toggle-label"></label>
+                                </div>
+                            </div>
+                            
+                            <div class="security-option" id="biometric-option">
+                                <div class="security-icon"><i class="fas fa-fingerprint"></i></div>
+                                <div class="security-info">
+                                    <h4>Biometric Login</h4>
+                                    <p>Enable fingerprint or face recognition login</p>
+                                </div>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="biometric" class="toggle-input">
+                                    <label for="biometric" class="toggle-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="captcha-container">
+                            <div class="captcha-box" id="captcha-box">
+                                <span id="captcha-text"></span>
+                            </div>
+                            <button type="button" id="refresh-captcha" aria-label="Refresh captcha">
+                                <i class="fas fa-sync-alt"></i>
+                            </button>
+                        </div>
+                        <input type="text" id="captcha-input" placeholder="Enter the captcha code" maxlength="6">
+                        <span class="error-message" id="captcha-error"></span>
+                    </div>
+                    
+                    <div class="form-nav">
+                        <button type="button" id="prev-3" class="btn-prev"><i class="fas fa-arrow-left"></i> Back</button>
+                        <button type="button" id="next-3" class="btn-next">Next <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                
+                <!-- Step 4: Verification -->
+                <div class="form-step hidden" id="step-4">
+                    <div class="verification-container">
+                        <div class="verification-icon">
+                            <i class="fas fa-user-check"></i>
+                        </div>
+                        <h3>Identity Verification</h3>
+                        <p>Choose a verification method to complete your registration</p>
+                        
+                        <div class="verification-methods">
+                            <div class="verification-method" id="email-verification">
+                                <div class="method-icon"><i class="fas fa-envelope"></i></div>
+                                <div class="method-info">
+                                    <h4>Email Verification</h4>
+                                    <p>We'll send a code to your email</p>
+                                </div>
+                                <button type="button" class="btn-verify" id="verify-email">Verify Email</button>
+                            </div>
+                            
+                            <div class="verification-method" id="phone-verification">
+                                <div class="method-icon"><i class="fas fa-mobile-alt"></i></div>
+                                <div class="method-info">
+                                    <h4>Phone Verification</h4>
+                                    <p>We'll send a code to your phone</p>
+                                </div>
+                                <button type="button" class="btn-verify" id="verify-phone-btn">Verify Phone</button>
+                            </div>
+                            
+                            <div class="verification-method" id="id-verification">
+                                <div class="method-icon"><i class="fas fa-id-card"></i></div>
+                                <div class="method-info">
+                                    <h4>ID Verification</h4>
+                                    <p>Upload a government-issued ID</p>
+                                </div>
+                                <button type="button" class="btn-verify" id="verify-id">Verify ID</button>
+                            </div>
+                        </div>
+                        
+                        <div class="verification-code-container hidden" id="code-container">
+                            <h4>Enter Verification Code</h4>
+                            <p>We've sent a code to your <span id="verification-destination"></span></p>
+                            <div class="verification-code-inputs">
+                                <input type="text" maxlength="1" class="code-input" data-index="1">
+                                <input type="text" maxlength="1" class="code-input" data-index="2">
+                                <input type="text" maxlength="1" class="code-input" data-index="3">
+                                <input type="text" maxlength="1" class="code-input" data-index="4">
+                                <input type="text" maxlength="1" class="code-input" data-index="5">
+                                <input type="text" maxlength="1" class="code-input" data-index="6">
+                            </div>
+                            <div class="verification-actions">
+                                <button type="button" id="resend-code" class="btn-link">Resend Code</button>
+                                <span id="code-timer">00:59</span>
+                            </div>
+                            <span class="error-message" id="code-error"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="id-upload-container hidden" id="id-upload-container">
+                        <h4>Upload ID Document</h4>
+                        <p>Please upload a clear photo of your government-issued ID</p>
+                        
+                        <div class="upload-area" id="upload-area">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Drag & drop your document or <span class="upload-link">browse files</span></p>
+                            <input type="file" id="id-file" accept="image/*" hidden>
+                        </div>
+                        
+                        <div class="uploaded-preview hidden" id="uploaded-preview">
+                            <img id="preview-image" alt="ID preview">
+                            <button type="button" id="remove-upload" class="btn-icon"><i class="fas fa-times"></i></button>
+                        </div>
+                        
+                        <div class="capture-option">
+                            <button type="button" id="capture-id" class="btn-secondary">
+                                <i class="fas fa-camera"></i> Capture with Camera
+                            </button>
+                        </div>
+                        
+                        <span class="error-message" id="upload-error"></span>
+                    </div>
+                    
+                    <div class="form-nav">
+                        <button type="button" id="prev-4" class="btn-prev"><i class="fas fa-arrow-left"></i> Back</button>
+                        <button type="submit" id="submit-btn" disabled>Create Account</button>
+                    </div>
+                </div>
+            </form>
+            
+            <p class="login-link">Already have an account? <a href="#" id="login-link">Log in</a></p>
+        </div>
+        
+        <div class="tooltip-container" id="tooltip-container">
+            <div class="tooltip" id="tooltip">
+                <div class="tooltip-arrow"></div>
+                <div class="tooltip-content" id="tooltip-content"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Success Modal -->
+    <div id="success-modal" class="modal">
+        <div class="modal-content">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2>Account Created!</h2>
+            <p>Your account has been created successfully.</p>
+            <p class="email-verify">We've sent a verification link to your email. Please verify your account to continue.</p>
+            <div class="app-download">
+                <p>Download our mobile app</p>
+                <div class="app-buttons">
+                    <a href="#" class="app-button">
+                        <i class="fab fa-apple"></i>
+                        <span>App Store</span>
+                    </a>
+                    <a href="#" class="app-button">
+                        <i class="fab fa-google-play"></i>
+                        <span>Google Play</span>
+                    </a>
+                </div>
+            </div>
+            <button id="modal-close-btn">Continue</button>
+        </div>
+    </div>
+    
+    <!-- Biometric Auth Modal -->
+    <div id="biometric-modal" class="modal">
+        <div class="modal-content">
+            <div class="biometric-icon">
+                <i class="fas fa-fingerprint"></i>
+            </div>
+            <h2>Biometric Authentication</h2>
+            <p>Set up biometric login for easier and secure access</p>
+            <div class="biometric-animation" id="biometric-animation">
+                <div class="fingerprint-scan"></div>
+            </div>
+            <p class="biometric-message" id="biometric-message">Place your finger on the sensor</p>
+            <div class="modal-buttons">
+                <button id="cancel-biometric" class="btn-secondary">Cancel</button>
+                <button id="confirm-biometric">Confirm</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loader"></div>
+        <p>Creating your account...</p>
+    </div>
+    
+    <!-- PWA Install Prompt -->
+    <div id="pwa-install-prompt" class="pwa-prompt">
+        <div class="pwa-content">
+            <div class="pwa-icon">
+                <i class="fas fa-mobile-alt"></i>
+            </div>
+            <div class="pwa-info">
+                <h3>Install Web App</h3>
+                <p>Install this application on your device for a better experience</p>
+            </div>
+            <div class="pwa-actions">
+                <button id="pwa-cancel" class="btn-link">Not now</button>
+                <button id="pwa-install" class="btn-primary">Install</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Camera Modal -->
+    <div id="camera-modal" class="modal">
+        <div class="modal-content camera-content">
+            <h2>Capture ID Document</h2>
+            <div class="camera-container">
+                <video id="camera-feed" autoplay playsinline></video>
+                <canvas id="camera-canvas" class="hidden"></canvas>
+                <div class="camera-overlay">
+                    <div class="id-frame"></div>
+                    <p>Position your ID within the frame</p>
+                </div>
+            </div>
+            <div class="camera-controls">
+                <button id="camera-capture" class="camera-btn">
+                    <i class="fas fa-camera"></i>
+                </button>
+                <button id="camera-switch" class="camera-btn camera-btn-small">
+                    <i class="fas fa-sync"></i>
+                </button>
+                <button id="camera-close" class="camera-btn camera-btn-small">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Translation Data -->
+    <script id="translations" type="application/json">
+        {
+            "en": {
+                "language": "English",
+                "title": "Create Account",
+                "emailLabel": "Email",
+                "passwordLabel": "Password",
+                "confirmPasswordLabel": "Confirm Password",
+                "fullNameLabel": "Full Name",
+                "phoneLabel": "Phone Number (optional)",
+                "dobLabel": "Date of Birth",
+                "nextButton": "Next",
+                "backButton": "Back",
+                "createAccountButton": "Create Account",
+                "loginLink": "Already have an account? Log in",
+                "termsCheckbox": "I agree to the Terms of Service and Privacy Policy",
+                "ageCheckbox": "I confirm that I am at least 18 years old",
+                "newsletterCheckbox": "Subscribe to our newsletter",
+                "passwordStrength": "Password strength",
+                "weakPassword": "Weak",
+                "moderatePassword": "Moderate",
+                "strongPassword": "Strong",
+                "interestsLabel": "What are you interested in?",
+                "captchaPlaceholder": "Enter the captcha code",
+                "successTitle": "Account Created!",
+                "successMessage": "Your account has been created successfully.",
+                "emailVerification": "We've sent a verification link to your email. Please verify your account to continue.",
+                "continueButton": "Continue",
+                "verificationTitle": "Identity Verification",
+                "verificationSubtitle": "Choose a verification method to complete your registration",
+                "emailVerificationTitle": "Email Verification",
+                "emailVerificationDesc": "We'll send a code to your email",
+                "phoneVerificationTitle": "Phone Verification",
+                "phoneVerificationDesc": "We'll send a code to your phone",
+                "idVerificationTitle": "ID Verification",
+                "idVerificationDesc": "Upload a government-issued ID",
+                "verifyButton": "Verify",
+                "securityTitle": "Enhanced Security",
+                "twoFactorTitle": "Two-Factor Authentication",
+                "twoFactorDesc": "Add an extra layer of security to your account",
+                "biometricTitle": "Biometric Login",
+                "biometricDesc": "Enable fingerprint or face recognition login"
+            },
+            "es": {
+                "language": "Español",
+                "title": "Crear Cuenta",
+                "emailLabel": "Correo electrónico",
+                "passwordLabel": "Contraseña",
+                "confirmPasswordLabel": "Confirmar Contraseña",
+                "fullNameLabel": "Nombre Completo",
+                "phoneLabel": "Número de teléfono (opcional)",
+                "dobLabel": "Fecha de nacimiento",
+                "nextButton": "Siguiente",
+                "backButton": "Atrás",
+                "createAccountButton": "Crear Cuenta",
+                "loginLink": "¿Ya tienes una cuenta? Inicia sesión",
+                "termsCheckbox": "Acepto los Términos de Servicio y la Política de Privacidad",
+                "ageCheckbox": "Confirmo que tengo al menos 18 años",
+                "newsletterCheckbox": "Suscribirme al boletín informativo",
+                "passwordStrength": "Seguridad de la contraseña",
+                "weakPassword": "Débil",
+                "moderatePassword": "Moderada",
+                "strongPassword": "Fuerte",
+                "interestsLabel": "¿En qué estás interesado?",
+                "captchaPlaceholder": "Ingresa el código captcha",
+                "successTitle": "¡Cuenta Creada!",
+                "successMessage": "Tu cuenta ha sido creada con éxito.",
+                "emailVerification": "Hemos enviado un enlace de verificación a tu correo electrónico. Por favor, verifica tu cuenta para continuar.",
+                "continueButton": "Continuar",
+                "verificationTitle": "Verificación de Identidad",
+                "verificationSubtitle": "Elige un método de verificación para completar tu registro",
+                "emailVerificationTitle": "Verificación por Email",
+                "emailVerificationDesc": "Enviaremos un código a tu correo electrónico",
+                "phoneVerificationTitle": "Verificación por Teléfono",
+                "phoneVerificationDesc": "Enviaremos un código a tu teléfono",
+                "idVerificationTitle": "Verificación de ID",
+                "idVerificationDesc": "Sube una identificación emitida por el gobierno",
+                "verifyButton": "Verificar",
+                "securityTitle": "Seguridad Mejorada",
+                "twoFactorTitle": "Autenticación de Dos Factores",
+                "twoFactorDesc": "Añade una capa extra de seguridad a tu cuenta",
+                "biometricTitle": "Inicio de Sesión Biométrico",
+                "biometricDesc": "Habilita el inicio de sesión por huella digital o reconocimiento facial"
+            }
+        }
+    </script>
+    
+    <!-- Analytics -->
+    <script id="analytics-data" type="application/json">
+        {
+            "trackEvents": true,
+            "trackSessionTime": true,
+            "trackFormInteractions": true,
+            "enableHeatmap": true
+        }
+    </script>
+    
+    <!-- PWA Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => {
+                        console.log('Service Worker registered with scope:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.error('Service Worker registration failed:', error);
+                    });
+            });
+        }
+    </script>
+    
+    <script src="script.js"></script>
+</body>
+</html> 
