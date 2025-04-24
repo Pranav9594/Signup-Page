@@ -37,11 +37,5 @@ The UI uses CSS variables for easy customization. The main color scheme and othe
 }
 ```
 
-## Browser Support
 
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-- Opera (latest)
 
