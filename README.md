@@ -35,7 +35,7 @@ The UI uses CSS variables for easy customization. The main color scheme and othe
     --primary-light: #6c83e6;
     /* other variables */
 }
-```
+
 
 
 
