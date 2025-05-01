@@ -26,7 +26,7 @@ A sleek, responsive, and accessible authentication interface built with HTML, CS
 
 ## Customization
 
-The UI uses CSS variables for easy customization. The main color scheme and other properties can be modified in the `styles.css` file under the `:root` selector.
+The UI uses CSS variables for easy customization. The main color scheme and other properties can be modified in the `styles.css` file under the `:root` selector
 
 ```css
 :root {
